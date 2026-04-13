@@ -1,0 +1,364 @@
+/* Подключение шрифта */
+@font-face {
+  font-family: 'MyCustomFont';  /* Название, которое будете использовать */
+  src: url('fonts/RodondoRUS-Regular_0.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;  /* для лучшей производительности */
+}
+@font-face {
+  font-family: 'Tobi';  /* Название, которое будете использовать */
+  src: url('fonts/Tobi Greek Cyrillic Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;  /* для лучшей производительности */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* декоративные шары */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+}
+
+body::before {
+  width: 300px;
+  height: 300px;
+  background:#7d617db4;
+  top: 20%;
+  left: -100px;
+}
+
+body::after {
+  width: 250px;
+  height: 250px;
+  background:#b97fb9c0;
+  bottom: 10%;
+  right: -80px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 0;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 42px;
+  color: #472554;
+  font-family: 'MyCustomFont';
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #553255;
+  font-weight: 500;
+  font-family: 'MyCustomFont';
+  font-size: 26px;
+  position: relative;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #7d617d;
+  transition: 0.5s;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* красивый бургер */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 28px;
+  height: 3px;
+  background: #593666c8;
+  margin: 5px;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Hero */
+.hero {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: 
+    linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,0.9) 100%),
+    url('images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 76px;
+  font-family: 'MyCustomFont';
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #7d617d;
+  text-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease;
+}
+
+/* Buttons */
+.btn {
+  background: linear-gradient(135deg, #7d617d, #db8fdb);
+  padding: 18px 45px;
+  border-radius: 30px;
+  font-family: 'MyCustomFont';
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 20px rgba(109, 70, 83, 0.4);
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(244,143,177,0.5);
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid #f8bbd0;
+  color: #d81b60;
+}
+
+/* Services */
+.service-grid {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  position: relative;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #fff, #fff5f8);
+  border-radius: 20px;
+  text-align: center;
+  overflow: hidden;
+  transition: 0.4s;
+   border: 2px solid #5d465f2b; /* добавить рамку */
+}
+
+/* декоративный градиент */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(248,187,208,0.3), transparent 60%);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.service-card .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-family: 'MyCustomFont', 'Poppins', sans-serif;
+  font-size: 24px;
+  color: #593666c8;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.service-card .desc {
+  font-family: 'MyCustomFont', 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.service-card .price {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #7d617d;
+}
+
+.btn.small {
+  padding: 8px 18px;
+  font-size: 14px;
+}
+
+/* Gallery */
+.gallery-grid {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  filter: brightness(0.8);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #fce4ec;
+}
+
+/* Animations */
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 0.6s;
+}
+.contact-buttons {
+  display: flex;
+  justify-content: center;  /* выравнивание по центру */
+  margin-top: 30px;
+}
+/* Стили для заголовков секций */
+.services h1,
+.gallery h1,
+.about h1,
+.contacts h2 {
+  font-family: 'MyCustomFont', 'Poppins', sans-serif;
+  font-size: 52px;
+  color: #7d617d;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+.contacts p {
+  font-family: 'MyCustomFont', 'Poppins', sans-serif;
+  font-size: 20px;
+  color: #7d617d;
+  text-align: center;
+  margin: 15px 0;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);} 
+  to {opacity: 1; transform: translateY(0);} 
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu {
+    position: absolute;
+    top: 70px;
+    right: 15px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    width: 220px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .menu a {
+    padding: 10px 0;
+    font-size: 16px;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+  .menu.active {
+    display: flex;
+  }
+
+  .burger {
+    display: flex;
+  }

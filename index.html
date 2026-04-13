@@ -1,0 +1,159 @@
+<!-- ===================== index.html ===================== -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anna Rose</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="header">
+  <div class="container nav">
+    <div class="logo">Anna Rose</div>
+
+    <nav class="menu" id="menu">
+      <a href="#hero">Главная</a>
+      <a href="#services">Услуги</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="burger" id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h1>Твоя красота — наша забота</h1>
+    <a href="tel:+7XXXXXXXXXX" class="btn">Записаться</a>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section class="services container" id="services">
+  <h1>Услуги</h1>
+  <div class="service-grid">
+
+    <div class="card service-card">
+      <h3>Стрижка</h3>
+      <p class="desc">Подбор формы под ваш стиль и тип лица</p>
+      <div class="price">от 1500 ₽</div>
+      <a href="tel:+7XXXXXXXXXX" class="btn small">Записаться</a>
+    </div>
+
+    <div class="card service-card">
+      <h3>Окрашивание</h3>
+      <p class="desc">Современные техники и бережный уход</p>
+      <div class="price">от 3000 ₽</div>
+      <a href="tel:+7XXXXXXXXXX" class="btn small">Записаться</a>
+    </div>
+
+    <div class="card service-card">
+      <h3>Маникюр</h3>
+      <p class="desc">Идеальная форма и стойкое покрытие</p>
+      <div class="price">от 1200 ₽</div>
+      <a href="tel:+7XXXXXXXXXX" class="btn small">Записаться</a>
+    </div>
+
+    <div class="card service-card">
+      <h3>Уход</h3>
+      <p class="desc">Восстановление и питание волос</p>
+      <div class="price">от 2000 ₽</div>
+      <a href="tel:+7XXXXXXXXXX" class="btn small">Записаться</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section class="gallery container" id="gallery">
+  <h1>Галерея работ</h1>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="about container">
+  <h1>О салоне</h1>
+  <p>
+    Anna Rose — это больше, чем просто салон красоты. Это пространство, где вы можете расслабиться, отвлечься от забот и позволить себе быть прекрасной. Наши мастера регулярно повышают квалификацию на курсах и мастер-классах, чтобы предлагать вам самые актуальные техники стрижек, окрашивания и ухода. Мы используем премиальную косметику L'Oreal, Matrix и Kerastase, чтобы ваши волосы оставались здоровыми и блестящими после каждой процедуры.
+  </p>
+</section>
+
+<!-- ===== Contacts ===== -->
+<section class="contacts container" id="contacts">
+  <h2>Контакты</h2>
+  <p>Телефон : +7 969 7167 76 27</p>
+  <p>Адрес : Тверь</p>
+
+  <div class="contact-buttons">
+    <a href="tel:+79697167627" class="btn">Позвонить</a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>© 2026 Anna Rose</p>
+</footer>
+
+<!-- ===== JS ===== -->
+<script>
+// ===== Burger Menu =====
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+
+burger.addEventListener('click', () => {
+  menu.classList.toggle('active');
+});
+
+// ===== Smooth Scroll =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+    menu.classList.remove('active');
+  });
+});
+
+// ===== Gallery Auto Load =====
+const gallery = document.getElementById('galleryGrid');
+const totalImages = 12; // просто меняешь число
+
+for (let i = 1; i <= totalImages; i++) {
+  const img = document.createElement('img');
+  img.src = `images/${i}.jpg`;
+  img.alt = 'work';
+  gallery.appendChild(img);
+}
+
+// ===== Scroll Animation =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('section, .card').forEach(el => {
+  el.classList.add('hidden');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
